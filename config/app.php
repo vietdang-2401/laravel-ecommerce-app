@@ -1,5 +1,7 @@
 <?php
 
+use App\Providers\RepositoryServiceProvider;
+use App\Providers\SettingServiceProvider;
 use Illuminate\Support\Facades\Facade;
 
 return [
@@ -181,6 +183,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        RepositoryServiceProvider::class,
+        SettingServiceProvider::class,
 
         /*
          * Package Service Providers...
