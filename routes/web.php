@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 require 'admin.php';
 
@@ -18,5 +19,11 @@ require 'admin.php';
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::view('/', 'site.pages.homepage');
+
+Auth::routes();
+
+Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');
 
 // Route::view('/admin', 'admin.dashboard.index');

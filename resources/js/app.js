@@ -46,8 +46,10 @@ import { createApp } from 'vue';
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import AttributeValues from './components/AttributeValues';
+import ProductAttributes from './components/ProductAttributes';
 
 const app = createApp({});
 app.use(VueSweetalert2);
 app.component('attribute-values', AttributeValues);
+app.component('product-attributes', ProductAttributes);
 app.mount('#app');

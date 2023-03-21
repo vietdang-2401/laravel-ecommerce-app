@@ -185,6 +185,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         RepositoryServiceProvider::class,
         SettingServiceProvider::class,
+        App\Providers\ViewComposerServiceProvider::class,
 
         /*
          * Package Service Providers...
