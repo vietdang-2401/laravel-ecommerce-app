@@ -13,9 +13,10 @@
     <div class="col-md-3">
         <div class="tile p-0">
             <ul class="nav flex-column nav-tabs user-tabs">
-                <li class="nav-item"><a class="nav-link active" href="#general" data-toggle="tab">General</a></li>
-                <li class="nav-item"><a class="nav-link" href="#images" data-toggle="tab">Images</a></li>
-                <li class="nav-item"><a class="nav-link" href="#attributes" data-toggle="tab">Attributes</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#general" data-toggle="tab">Thông tin chung</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="#images" data-toggle="tab">Thêm ảnh</a></li>
+                <li class="nav-item"><a class="nav-link" href="#attributes" data-toggle="tab">Thuộc tính</a></li>
             </ul>
         </div>
     </div>
@@ -25,13 +26,13 @@
                 <div class="tile">
                     <form action="{{ route('admin.products.update') }}" method="POST" role="form">
                         @csrf
-                        <h3 class="tile-title">Product Information</h3>
+                        <h3 class="tile-title">Thông tin sản phẩm</h3>
                         <hr>
                         <div class="tile-body">
                             <div class="form-group">
-                                <label class="control-label" for="name">Name</label>
+                                <label class="control-label" for="name">Tên sản phẩm</label>
                                 <input class="form-control @error('name') is-invalid @enderror" type="text"
-                                    placeholder="Enter attribute name" id="name" name="name"
+                                    placeholder="Nhập tên sản phẩm" id="name" name="name"
                                     value="{{ old('name', $product->name) }}" />
                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                                 <div class="invalid-feedback active">
@@ -44,7 +45,7 @@
                                     <div class="form-group">
                                         <label class="control-label" for="sku">SKU</label>
                                         <input class="form-control @error('sku') is-invalid @enderror" type="text"
-                                            placeholder="Enter product sku" id="sku" name="sku"
+                                            placeholder="Nhập SKU sản phẩm" id="sku" name="sku"
                                             value="{{ old('sku', $product->sku) }}" />
                                         <div class="invalid-feedback active">
                                             <i class="fa fa-exclamation-circle fa-fw"></i> @error('sku') <span>{{
@@ -54,10 +55,10 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label" for="brand_id">Brand</label>
+                                        <label class="control-label" for="brand_id">Thương hiệu</label>
                                         <select name="brand_id" id="brand_id"
                                             class="form-control @error('brand_id') is-invalid @enderror">
-                                            <option value="0">Select a brand</option>
+                                            <option value="0">Chọn một thương hiệu</option>
                                             @foreach($brands as $brand)
                                             @if ($product->brand_id == $brand->id)
                                             <option value="{{ $brand->id }}" selected>{{ $brand->name }}</option>
@@ -76,7 +77,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="control-label" for="categories">Categories</label>
+                                        <label class="control-label" for="categories">Danh mục</label>
                                         <select name="categories[]" id="categories" class="form-control" multiple>
                                             @foreach($categories as $category)
                                             @php $check = in_array($category->id,
@@ -91,9 +92,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label" for="price">Price</label>
+                                        <label class="control-label" for="price">Giá</label>
                                         <input class="form-control @error('price') is-invalid @enderror" type="text"
-                                            placeholder="Enter product price" id="price" name="price"
+                                            placeholder="Nhập giá sản phẩm" id="price" name="price"
                                             value="{{ old('price', $product->price) }}" />
                                         <div class="invalid-feedback active">
                                             <i class="fa fa-exclamation-circle fa-fw"></i> @error('price') <span>{{
@@ -103,9 +104,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label" for="special_price">Special Price</label>
+                                        <label class="control-label" for="special_price">Giá khuyến mãi</label>
                                         <input class="form-control" type="text"
-                                            placeholder="Enter product special price" id="special_price"
+                                            placeholder="Nhập giá khuyến mãi sản phẩm" id="special_price"
                                             name="special_price"
                                             value="{{ old('special_price', $product->special_price) }}" />
                                     </div>
@@ -114,9 +115,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label" for="quantity">Quantity</label>
+                                        <label class="control-label" for="quantity">Số lượng kho</label>
                                         <input class="form-control @error('quantity') is-invalid @enderror"
-                                            type="number" placeholder="Enter product quantity" id="quantity"
+                                            type="number" placeholder="Nhập số lượng hàng tồn kho" id="quantity"
                                             name="quantity" value="{{ old('quantity', $product->quantity) }}" />
                                         <div class="invalid-feedback active">
                                             <i class="fa fa-exclamation-circle fa-fw"></i> @error('quantity') <span>{{
@@ -126,14 +127,14 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label" for="weight">Weight</label>
-                                        <input class="form-control" type="text" placeholder="Enter product weight"
+                                        <label class="control-label" for="weight">Khối lượng</label>
+                                        <input class="form-control" type="text" placeholder="Nhập khối lượng sản phẩm"
                                             id="weight" name="weight" value="{{ old('weight', $product->weight) }}" />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label" for="description">Description</label>
+                                <label class="control-label" for="description">Mô tả</label>
                                 <textarea name="description" id="description" rows="8"
                                     class="form-control">{{ old('description', $product->description) }}</textarea>
                             </div>
@@ -142,7 +143,7 @@
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="checkbox" id="status" name="status" {{
                                             $product->status == 1 ? 'checked' : '' }}
-                                        />Status
+                                        />Đang bán
                                     </label>
                                 </div>
                             </div>
@@ -151,7 +152,7 @@
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="checkbox" id="featured" name="featured" {{
                                             $product->featured == 1 ? 'checked' : '' }}
-                                        />Featured
+                                        />Khuyến mãi
                                     </label>
                                 </div>
                             </div>
@@ -160,9 +161,9 @@
                             <div class="row d-print-none mt-2">
                                 <div class="col-12 text-right">
                                     <button class="btn btn-success" type="submit"><i
-                                            class="fa fa-fw fa-lg fa-check-circle"></i>Update Product</button>
+                                            class="fa fa-fw fa-lg fa-check-circle"></i>Cập nhật</button>
                                     <a class="btn btn-danger" href="{{ route('admin.products.index') }}"><i
-                                            class="fa fa-fw fa-lg fa-arrow-left"></i>Go Back</a>
+                                            class="fa fa-fw fa-lg fa-arrow-left"></i>Quay lại</a>
                                 </div>
                             </div>
                         </div>
@@ -171,7 +172,7 @@
             </div>
             <div class="tab-pane" id="images">
                 <div class="tile">
-                    <h3 class="tile-title">Upload Image</h3>
+                    <h3 class="tile-title">Tải ảnh lên</h3>
                     <hr>
                     <div class="tile-body">
                         <div class="row">
@@ -186,7 +187,7 @@
                         <div class="row d-print-none mt-2">
                             <div class="col-12 text-right">
                                 <button class="btn btn-success" type="button" id="uploadButton">
-                                    <i class="fa fa-fw fa-lg fa-upload"></i>Upload Images
+                                    <i class="fa fa-fw fa-lg fa-upload"></i>Tải ảnh lên
                                 </button>
                             </div>
                         </div>

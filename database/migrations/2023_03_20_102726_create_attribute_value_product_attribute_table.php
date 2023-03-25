@@ -17,9 +17,9 @@ return new class extends Migration
             Schema::create('attribute_value_product_attribute', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->unsignedBigInteger('attribute_value_id');
-                $table->foreign('attribute_value_id')->references('id')->on('attribute_values');
+                $table->foreign('attribute_value_id')->references('id')->on('attribute_values')->cascadeOnDelete();
                 $table->unsignedBigInteger('product_attribute_id');
-                $table->foreign('product_attribute_id')->references('id')->on('product_attributes');
+                $table->foreign('product_attribute_id')->references('id')->on('product_attributes')->cascadeOnDelete();
             });
         }
     }

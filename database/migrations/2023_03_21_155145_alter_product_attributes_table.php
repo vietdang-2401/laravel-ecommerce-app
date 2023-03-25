@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::table('product_attributes', function (Blueprint $table) {
 
-            // $table->unsignedBigInteger('attribute_id')->after('id');
-            // $table->foreign('attribute_id')->references('id')->on('attributes');
+            $table->unsignedBigInteger('attribute_id')->after('id');
+            $table->foreign('attribute_id')->references('id')->on('attributes')->cascadeOnDelete();
 
-            // $table->string('value')->after('attribute_id');
+            $table->string('value')->after('attribute_id');
         });
     }
 

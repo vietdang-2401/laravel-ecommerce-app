@@ -11,8 +11,9 @@
     <div class="col-md-3">
         <div class="tile p-0">
             <ul class="nav flex-column nav-tabs user-tabs">
-                <li class="nav-item"><a class="nav-link active" href="#general" data-toggle="tab">General</a></li>
-                <li class="nav-item"><a class="nav-link" href="#values" data-toggle="tab">Attribute Values</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#general" data-toggle="tab">Thông tin chung</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="#values" data-toggle="tab">Giá trị thuộc tính</a></li>
             </ul>
         </div>
     </div>
@@ -22,22 +23,22 @@
                 <div class="tile">
                     <form action="{{ route('admin.attributes.update') }}" method="POST" role="form">
                         @csrf
-                        <h3 class="tile-title">Attribute Information</h3>
+                        <h3 class="tile-title">Thông tin thuộc tính</h3>
                         <hr>
                         <div class="tile-body">
                             <div class="form-group">
-                                <label class="control-label" for="code">Code</label>
-                                <input class="form-control" type="text" placeholder="Enter attribute code" id="code"
+                                <label class="control-label" for="code">Mã thuộc tính</label>
+                                <input class="form-control" type="text" placeholder="Nhập mã thuộc tính" id="code"
                                     name="code" value="{{ old('code', $attribute->code) }}" />
                             </div>
                             <input type="hidden" name="id" value="{{ $attribute->id }}">
                             <div class="form-group">
-                                <label class="control-label" for="name">Name</label>
-                                <input class="form-control" type="text" placeholder="Enter attribute name" id="name"
+                                <label class="control-label" for="name">Tên thuộc tính</label>
+                                <input class="form-control" type="text" placeholder="Nhập tên thuộc tính" id="name"
                                     name="name" value="{{ old('name', $attribute->name) }}" />
                             </div>
                             <div class="form-group">
-                                <label class="control-label" for="frontend_type">Frontend Type</label>
+                                <label class="control-label" for="frontend_type">Loại giao diện</label>
                                 @php $types = ['select' => 'Select Box', 'radio' => 'Radio Button', 'text' => 'Text
                                 Field', 'text_area' => 'Text Area']; @endphp
                                 <select name="frontend_type" id="frontend_type" class="form-control">
@@ -55,7 +56,7 @@
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="checkbox" id="is_filterable"
                                             name="is_filterable" {{ $attribute->is_filterable == 1 ? 'checked' : ''
-                                        }}/>Filterable
+                                        }}/>Có thể lọc
                                     </label>
                                 </div>
                             </div>
@@ -64,7 +65,7 @@
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="checkbox" id="is_required"
                                             name="is_required" {{ $attribute->is_required == 1 ? 'checked' : ''
-                                        }}/>Required
+                                        }}/>Bắt buộc
                                     </label>
                                 </div>
                             </div>
@@ -73,9 +74,9 @@
                             <div class="row d-print-none mt-2">
                                 <div class="col-12 text-right">
                                     <button class="btn btn-success" type="submit"><i
-                                            class="fa fa-fw fa-lg fa-check-circle"></i>Update Attribute</button>
+                                            class="fa fa-fw fa-lg fa-check-circle"></i>Cập nhật</button>
                                     <a class="btn btn-danger" href="{{ route('admin.attributes.index') }}"><i
-                                            class="fa fa-fw fa-lg fa-arrow-left"></i>Go Back</a>
+                                            class="fa fa-fw fa-lg fa-arrow-left"></i>Quay lại</a>
                                 </div>
                             </div>
                         </div>

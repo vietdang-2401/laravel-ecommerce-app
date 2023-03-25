@@ -33,7 +33,7 @@ class CategoryController extends BaseController
     {
         $categories = $this->categoryRepository->listCategories();
 
-        $this->setPageTitle('Categories', 'List of all categories');
+        $this->setPageTitle('Danh mục', 'Danh sách tất cả danh mục');
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -44,7 +44,7 @@ class CategoryController extends BaseController
     {
         $categories = $this->categoryRepository->treeList();
 
-        $this->setPageTitle('Categories', 'Create Category');
+        $this->setPageTitle('Danh mục', 'Tạo danh mục mới');
         return view('admin.categories.create', compact('categories'));
     }
 
@@ -80,7 +80,7 @@ class CategoryController extends BaseController
         $targetCategory = $this->categoryRepository->findCategoryById($id);
         $categories = $this->categoryRepository->treeList();
 
-        $this->setPageTitle('Categories', 'Edit Category : ' . $targetCategory->name);
+        $this->setPageTitle('Danh mục', 'Chỉnh sửa danh mục : ' . $targetCategory->name);
         return view('admin.categories.edit', compact('categories', 'targetCategory'));
     }
 
@@ -102,9 +102,9 @@ class CategoryController extends BaseController
         $category = $this->categoryRepository->updateCategory($params);
 
         if (!$category) {
-            return $this->responseRedirectBack('Error occurred while updating category.', 'error', true, true);
+            return $this->responseRedirectBack('Có lỗi trong quá trình cập nhật.', 'error', true, true);
         }
-        return $this->responseRedirectBack('Category updated successfully', 'success', false, false);
+        return $this->responseRedirectBack('Cập nhật danh mục thành công', 'success', false, false);
     }
 
     /**
@@ -116,8 +116,8 @@ class CategoryController extends BaseController
         $category = $this->categoryRepository->deleteCategory($id);
 
         if (!$category) {
-            return $this->responseRedirectBack('Error occurred while deleting category.', 'error', true, true);
+            return $this->responseRedirectBack('Có lỗi trong quá trình xóa danh mục.', 'error', true, true);
         }
-        return $this->responseRedirect('admin.categories.index', 'Category deleted successfully', 'success', false, false);
+        return $this->responseRedirect('admin.categories.index', 'Danh mục đã được xóa thành công', 'success', false, false);
     }
 }

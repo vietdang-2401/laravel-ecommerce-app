@@ -11,7 +11,8 @@
     <div class="col-md-3">
         <div class="tile p-0">
             <ul class="nav flex-column nav-tabs user-tabs">
-                <li class="nav-item"><a class="nav-link active" href="#general" data-toggle="tab">General</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#general" data-toggle="tab">Thông tin chung</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -21,21 +22,21 @@
                 <div class="tile">
                     <form action="{{ route('admin.attributes.store') }}" method="POST" role="form">
                         @csrf
-                        <h3 class="tile-title">Attribute Information</h3>
+                        <h3 class="tile-title">Thông tin thuộc tính</h3>
                         <hr>
                         <div class="tile-body">
                             <div class="form-group">
-                                <label class="control-label" for="code">Code</label>
-                                <input class="form-control" type="text" placeholder="Enter attribute code" id="code"
+                                <label class="control-label" for="code">Mã thuộc tính</label>
+                                <input class="form-control" type="text" placeholder="Nhập mã thuộc tính" id="code"
                                     name="code" value="{{ old('code') }}" />
                             </div>
                             <div class="form-group">
-                                <label class="control-label" for="name">Name</label>
-                                <input class="form-control" type="text" placeholder="Enter attribute name" id="name"
+                                <label class="control-label" for="name">Tên thuộc tính</label>
+                                <input class="form-control" type="text" placeholder="Nhập tên thuộc tính" id="name"
                                     name="name" value="{{ old('name') }}" />
                             </div>
                             <div class="form-group">
-                                <label class="control-label" for="frontend_type">Frontend Type</label>
+                                <label class="control-label" for="frontend_type">Loại giao diện</label>
                                 @php $types = ['select' => 'Select Box', 'radio' => 'Radio Button', 'text' => 'Text
                                 Field', 'text_area' => 'Text Area']; @endphp
                                 <select name="frontend_type" id="frontend_type" class="form-control">
@@ -48,7 +49,7 @@
                                 <div class="form-check">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="checkbox" id="is_filterable"
-                                            name="is_filterable" />Filterable
+                                            name="is_filterable" />Có thể lọc
                                     </label>
                                 </div>
                             </div>
@@ -56,7 +57,7 @@
                                 <div class="form-check">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="checkbox" id="is_required"
-                                            name="is_required" />Required
+                                            name="is_required" />Bắt buộc
                                     </label>
                                 </div>
                             </div>
@@ -65,9 +66,9 @@
                             <div class="row d-print-none mt-2">
                                 <div class="col-12 text-right">
                                     <button class="btn btn-success" type="submit"><i
-                                            class="fa fa-fw fa-lg fa-check-circle"></i>Save Attribute</button>
+                                            class="fa fa-fw fa-lg fa-check-circle"></i>Lưu thông tin</button>
                                     <a class="btn btn-danger" href="{{ route('admin.attributes.index') }}"><i
-                                            class="fa fa-fw fa-lg fa-arrow-left"></i>Go Back</a>
+                                            class="fa fa-fw fa-lg fa-arrow-left"></i>Quay lại</a>
                                 </div>
                             </div>
                         </div>

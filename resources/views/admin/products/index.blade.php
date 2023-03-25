@@ -6,7 +6,7 @@
         <h1><i class="fa fa-tags"></i> {{ $pageTitle }}</h1>
         <p>{{ $subTitle }}</p>
     </div>
-    <a href="{{ route('admin.products.create') }}" class="btn btn-primary pull-right">Add Product</a>
+    <a href="{{ route('admin.products.create') }}" class="btn btn-primary pull-right">Thêm sản phẩm</a>
 </div>
 @include('admin.partials.flash')
 <div class="row">
@@ -18,11 +18,11 @@
                         <tr>
                             <th> # </th>
                             <th> SKU </th>
-                            <th> Name </th>
-                            <th class="text-center"> Brand </th>
-                            <th class="text-center"> Categories </th>
-                            <th class="text-center"> Price </th>
-                            <th class="text-center"> Status </th>
+                            <th> Tên sản phẩm </th>
+                            <th class="text-center"> Thương hiệu </th>
+                            <th class="text-center"> Danh mục </th>
+                            <th class="text-center"> Giá </th>
+                            <th class="text-center"> Trạng thái </th>
                             <th style="width:100px; min-width:100px;" class="text-center text-danger"><i
                                     class="fa fa-bolt"> </i></th>
                         </tr>
@@ -42,9 +42,9 @@
                             <td>{{ config('settings.currency_symbol') }}{{ $product->price }}</td>
                             <td class="text-center">
                                 @if ($product->status == 1)
-                                <span class="badge badge-success">Active</span>
+                                <span class="badge badge-success">Còn bán</span>
                                 @else
-                                <span class="badge badge-danger">Not Active</span>
+                                <span class="badge badge-danger">Đã ngừng bán</span>
                                 @endif
                             </td>
                             <td class="text-center">

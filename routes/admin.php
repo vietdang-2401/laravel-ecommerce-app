@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\AttributeValueController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductImageController;
 use App\Http\Controllers\Admin\ProductAttributeController;
@@ -17,7 +18,7 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::post('login', [LoginController::class, 'login'])->name('admin.login.post');
 	Route::get('logout', [LoginController::class, 'logout'])->name('admin.logout');
 
-	Route::group(['middleware' => ['auth:admin']], function () {
+	Route::group(['middleware' => 'auth:admin'], function () {
 
 		Route::get('/', function () {
 			return view('admin.dashboard.index');
@@ -81,6 +82,11 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('attributes/add', [ProductAttributeController::class, 'addAttribute']);
 			// Delete product attribute from the current product
 			Route::post('attributes/delete', [ProductAttributeController::class, 'deleteAttribute']);
+		});
+
+		Route::group(['prefix' => 'orders'], function () {
+			Route::get('/', [OrderController::class, 'index'])->name('admin.orders.index');
+			Route::get('/{order}/show', [OrderController::class, 'show'])->name('admin.orders.show');
 		});
 	});
 });

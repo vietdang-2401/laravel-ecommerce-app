@@ -1,54 +1,54 @@
 <template>
 	<div id="">
 		<div class="tile">
-			<h3 class="tile-title">Attribute Values</h3>
+			<h3 class="tile-title">Giá trị thuộc tính</h3>
 			<hr>
 			<div class="tile-body">
 				<div class="form-group">
-					<label class="control-label" for="value">Value</label>
-					<input class="form-control" type="text" placeholder="Enter attribute value" id="value" name="value"
+					<label class="control-label" for="value">Giá trị</label>
+					<input class="form-control" type="text" placeholder="Nhập giá trị thuộc tính" id="value" name="value"
 						v-model="value" />
 				</div>
 				<div class="form-group">
-					<label class="control-label" for="price">Price</label>
-					<input class="form-control" type="number" placeholder="Enter attribute value price" id="price"
-						name="price" v-model="price" />
+					<label class="control-label" for="price">Giá</label>
+					<input class="form-control" type="number" placeholder="Nhập giá" id="price" name="price"
+						v-model="price" />
 				</div>
 			</div>
 			<div class="tile-footer">
 				<div class="row d-print-none mt-2">
 					<div class="col-12 text-right">
 						<button class="btn btn-success" type="submit" @click.stop="saveValue()" v-if="addValue">
-							<i class="fa fa-fw fa-lg fa-check-circle"></i>Save
+							<i class="fa fa-fw fa-lg fa-check-circle"></i>Lưu
 						</button>
 						<button class="btn btn-success" type="submit" @click.stop="updateValue()" v-if="!addValue">
-							<i class="fa fa-fw fa-lg fa-check-circle"></i>Update
+							<i class="fa fa-fw fa-lg fa-check-circle"></i>Cập nhật
 						</button>
 						<button class="btn btn-primary" type="submit" @click.stop="reset()" v-if="!addValue">
-							<i class="fa fa-fw fa-lg fa-check-circle"></i>Reset
+							<i class="fa fa-fw fa-lg fa-check-circle"></i>Đặt lại
 						</button>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="tile">
-			<h3 class="tile-title">Option Values</h3>
+			<h3 class="tile-title">Giá trị lựa chọn</h3>
 			<div class="tile-body">
 				<div class="table-responsive">
 					<table class="table table-sm">
 						<thead>
 							<tr class="text-center">
 								<th>#</th>
-								<th>Value</th>
-								<th>Price</th>
-								<th>Action</th>
+								<th>Giá trị</th>
+								<th>Giá</th>
+								<th>Hành động</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr v-for="value in values">
 								<td style="width: 25%" class="text-center">{{ value.id }}</td>
 								<td style="width: 25%" class="text-center">{{ value.value }}</td>
-								<td style="width: 25%" class="text-center">{{ value.price }}</td>
+								<td style="width: 25%" class="text-center">{{ value.price }}₫</td>
 								<td style="width: 25%" class="text-center">
 									<button class="btn btn-sm btn-primary" @click.stop="editAttributeValue(value)">
 										<i class="fa fa-edit"></i>
@@ -97,7 +97,7 @@ export default {
 		},
 		saveValue() {
 			if (this.value === '') {
-				this.$swal("Error, Value for attribute is required.", {
+				this.$swal("Giá trị cho thuộc tính là bắt buộc.", {
 					icon: "error",
 				});
 			} else {
@@ -110,7 +110,7 @@ export default {
 				}).then(function (response) {
 					_this.values.push(response.data);
 					_this.resetValue();
-					_this.$swal("Success! Value added successfully!", {
+					_this.$swal("Thêm giá trị thành công!", {
 						icon: "success",
 					});
 				}).catch(function (error) {
@@ -135,7 +135,7 @@ export default {
 		},
 		updateValue() {
 			if (this.value === '') {
-				this.$swal("Error, Value for attribute is required.", {
+				this.$swal("Giá trị cho thuộc tính là bắt buộc.", {
 					icon: "error",
 				});
 			} else {
@@ -151,7 +151,7 @@ export default {
 					_this.values.splice(_this.key, 1);
 					_this.reset();
 					_this.values.push(response.data);
-					_this.$swal("Success! Value updated successfully!", {
+					_this.$swal("Cập nhật thành công!", {
 						icon: "success",
 					});
 				}).catch(function (error) {
@@ -162,13 +162,14 @@ export default {
 
 		deleteAttributeValue(value) {
 			this.$swal({
-				title: "Are you sure?",
-				text: "Once deleted, you will not be able to recover this attribute value!",
+				title: "Bạn có chắc không?",
+				text: "Bạn không thể khôi phục thao tác này!",
 				icon: "warning",
 				buttons: true,
+				showCancelButton: true,
 				dangerMode: true,
-			}).then((willDelete) => {
-				if (willDelete) {
+			}).then((result) => {
+				if (result.isConfirmed) {
 					this.currentId = value.id;
 					this.key = this.values.indexOf(value);
 					let _this = this;
@@ -178,17 +179,17 @@ export default {
 						if (response.data.status === 'success') {
 							_this.values.splice(_this.key, 1);
 							_this.resetValue();
-							_this.$swal("Success! Option value has been deleted!", {
+							_this.$swal("Xóa giá trị thành công!", {
 								icon: "success",
 							});
 						} else {
-							_this.$swal("Your option value not deleted!");
+							_this.$swal("Có lỗi xảy ra trong quá trình xóa giá trị!");
 						}
 					}).catch(function (error) {
 						console.log(error);
 					});
 				} else {
-					this.$swal("Your option value not deleted!");
+					// this.$swal("Your option value not deleted!");
 				}
 			});
 		},

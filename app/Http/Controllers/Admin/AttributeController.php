@@ -19,13 +19,13 @@ class AttributeController extends BaseController
     {
         $attributes = $this->attributeRepository->listAttributes();
 
-        $this->setPageTitle('Attributes', 'List of all attributes');
+        $this->setPageTitle('Thuộc tính', 'Danh sách các thuộc tính');
         return view('admin.attributes.index', compact('attributes'));
     }
 
     public function create()
     {
-        $this->setPageTitle('Attributes', 'Create Attribute');
+        $this->setPageTitle('Thuộc tính', 'Tạo mới thuộc tính');
         return view('admin.attributes.create');
     }
 
@@ -42,16 +42,16 @@ class AttributeController extends BaseController
         $attribute = $this->attributeRepository->createAttribute($params);
 
         if (!$attribute) {
-            return $this->responseRedirectBack('Error occurred while creating attribute.', 'error', true, true);
+            return $this->responseRedirectBack('Có lỗi xảy ra trong quá trình tạo mới thuộc tính.', 'error', true, true);
         }
-        return $this->responseRedirect('admin.attributes.index', 'Attribute added successfully', 'success', false, false);
+        return $this->responseRedirect('admin.attributes.index', 'Tạo mới thành công', 'success', false, false);
     }
 
     public function edit($id)
     {
         $attribute = $this->attributeRepository->findAttributeById($id);
 
-        $this->setPageTitle('Attributes', 'Edit Attribute : ' . $attribute->name);
+        $this->setPageTitle('Thuộc tính', 'Sửa thuộc tính : ' . $attribute->name);
         return view('admin.attributes.edit', compact('attribute'));
     }
 
@@ -68,9 +68,9 @@ class AttributeController extends BaseController
         $attribute = $this->attributeRepository->updateAttribute($params);
 
         if (!$attribute) {
-            return $this->responseRedirectBack('Error occurred while updating attribute.', 'error', true, true);
+            return $this->responseRedirectBack('Có lỗi xảy ra trong quá trình cập nhật thuộc tính.', 'error', true, true);
         }
-        return $this->responseRedirectBack('Attribute updated successfully', 'success', false, false);
+        return $this->responseRedirectBack('Cập nhật thuộc tính thành công', 'success', false, false);
     }
 
     public function delete($id)
@@ -78,8 +78,8 @@ class AttributeController extends BaseController
         $attribute = $this->attributeRepository->deleteAttribute($id);
 
         if (!$attribute) {
-            return $this->responseRedirectBack('Error occurred while deleting attribute.', 'error', true, true);
+            return $this->responseRedirectBack('Có lỗi xảy ra trong quá trình xóa thuộc tính.', 'error', true, true);
         }
-        return $this->responseRedirect('admin.attributes.index', 'Attribute deleted successfully', 'success', false, false);
+        return $this->responseRedirect('admin.attributes.index', 'Xóa thuộc tính thành công', 'success', false, false);
     }
 }

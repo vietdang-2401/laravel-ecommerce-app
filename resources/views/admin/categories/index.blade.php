@@ -6,7 +6,7 @@
         <h1><i class="fa fa-tags"></i> {{ $pageTitle }}</h1>
         <p>{{ $subTitle }}</p>
     </div>
-    <a href="{{ route('admin.categories.create') }}" class="btn btn-primary pull-right">Add Category</a>
+    <a href="{{ route('admin.categories.create') }}" class="btn btn-primary pull-right">Thêm danh mục</a>
 </div>
 @include('admin.partials.flash')
 <div class="row">
@@ -17,12 +17,12 @@
                     <thead>
                         <tr>
                             <th> # </th>
-                            <th> Name </th>
+                            <th> Tên </th>
                             <th> Slug </th>
-                            <th class="text-center"> Parent </th>
-                            <th class="text-center"> Featured </th>
-                            <th class="text-center"> Menu </th>
-                            <th class="text-center"> Order </th>
+                            <th class="text-center"> Danh mục cha </th>
+                            <th class="text-center"> Đặc biệt </th>
+                            <th class="text-center"> Hiển thị </th>
+                            <th class="text-center"> Đơn đặt </th>
                             <th style="width:100px; min-width:100px;" class="text-center text-danger"><i
                                     class="fa fa-bolt"> </i></th>
                         </tr>
@@ -37,16 +37,16 @@
                             <td>{{ $category->parent->name }}</td>
                             <td class="text-center">
                                 @if ($category->featured == 1)
-                                <span class="badge badge-success">Yes</span>
+                                <span class="badge badge-success">Có</span>
                                 @else
-                                <span class="badge badge-danger">No</span>
+                                <span class="badge badge-danger">Không</span>
                                 @endif
                             </td>
                             <td class="text-center">
                                 @if ($category->menu == 1)
-                                <span class="badge badge-success">Yes</span>
+                                <span class="badge badge-success">Có</span>
                                 @else
-                                <span class="badge badge-danger">No</span>
+                                <span class="badge badge-danger">Không</span>
                                 @endif
                             </td>
                             <td class="text-center">

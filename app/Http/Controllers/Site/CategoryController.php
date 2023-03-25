@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Site;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Contracts\CategoryContract;
+use App\Repositories\CategoryRepository;
 
 class CategoryController extends Controller
 {
@@ -19,7 +20,6 @@ class CategoryController extends Controller
     {
         $category = $this->categoryRepository->findBySlug($slug);
 
-        dd($category);
-        // return view('site.pages.category', compact('category')); we will add this in the next post
+        return view('site.pages.category', compact('category'));
     }
 }
